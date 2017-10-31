@@ -19,7 +19,6 @@ func File(uri *url.URL, dst string) {
 		b   []byte
 		err error
 	)
-	fmt.Println(uri)
 	if b, err = getFile(uri); err != nil {
 		log.Print(err.Error())
 	}
@@ -31,7 +30,6 @@ func File(uri *url.URL, dst string) {
 
 func getFile(url *url.URL) (b []byte, err error) {
 	var resp *http.Response
-	// fmt.Println(url)
 	if resp, err = http.Get(url.String()); err != nil {
 		err = fmt.Errorf("Error fetching %s: %v", url.String(), err.Error())
 	}
@@ -51,9 +49,8 @@ func getFile(url *url.URL) (b []byte, err error) {
 }
 
 func writeFile(b []byte, dst string) error {
-	fmt.Println(dst)
 	if err := os.MkdirAll(filepath.Dir(dst), 0666); err != nil {
-		fmt.Println(err.Error())
+		panic(err.Error())
 	}
 	f, err := os.Create(dst)
 	if err != nil {
