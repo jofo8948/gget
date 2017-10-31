@@ -1,6 +1,9 @@
 # gget
 A specialized replacement of wget in Go
 
+## To Build
+`go build -o gget src/cmd/gget/main.go`
+
 ## Background
 I had a special application that required the fetching of a lot of files listed in a text file.
 Normally in cases like this I would use wget -i, but since the urls contained unicode characters needing URL-encoding, 
