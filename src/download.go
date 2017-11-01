@@ -12,8 +12,8 @@ import (
 	"path/filepath"
 )
 
-// File will perform an HTTP GET on the specified URL, and return the response as a []byte
-// or an error
+// File will perform an HTTP GET on the specified URL, save the response to the destination.
+// just log the error and move on if any
 func File(uri *url.URL, dst string) {
 	var (
 		b   []byte
