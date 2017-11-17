@@ -17,17 +17,6 @@ type toFile struct {
 // it will either  write the contents of the file to the destination given,
 // or if that destination does not exist, it will return an error
 func ToFile(dst string) *toFile {
-	check := func() error {
-		if _, err := os.Open(dst); err != nil {
-			//return errors.New(fmt.Errorf("dst does not exist, provide a valid destination, %s", err.Error()).Error())
-		}
-		return nil
-	}
-
-	if err := check(); err != nil {
-		panic(err.Error())
-	}
-
 	return &toFile{destination: dst}
 }
 
