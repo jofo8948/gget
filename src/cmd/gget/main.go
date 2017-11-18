@@ -50,7 +50,7 @@ func main() {
 			}
 			if url := parseURL(<-lines); url != nil {
 				dst := filepath.Join(url.Host, filepath.Join(strings.Split(url.Path, "/")...))
-				download(&gget.GGet{URL: url, Strategy: strategy.ToFile(dst)})
+				download(gget.Default(url, strategy.ToFile(dst)))
 			}
 			wg.Done()
 		}()
@@ -65,8 +65,8 @@ func main() {
 	wg.Wait()
 }
 
-func download(gget *gget.GGet) {
-	if err := gget.Execute(); err != nil {
-		log.Printf("error retrieving file from URI %v, error %s", gget.URL, err.Error())
+func download(g *gget.GGet) {
+	if err := g.Execute(); err != nil {
+		log.Printf("error retrieving file from URI %v, error %s", g.URL, err.Error())
 	}
 }
