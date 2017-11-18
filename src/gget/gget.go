@@ -9,9 +9,9 @@ import (
 	"github.com/jofo8948/gget/src/strategy"
 )
 
-// Getter provides the interface for Retrieving a file
-// given a url you will receive either, the file as a []byte or an error
+// retriever provides the interface for Retrieving a file
 type retriever interface {
+	// get will retrieve the file from the specified URL as a []byte or an error
 	get(u *url.URL) (b []byte, err error)
 }
 
