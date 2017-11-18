@@ -29,7 +29,7 @@ type mockRetriever struct {
 	mockErr  error
 }
 
-var mockURL, _ = url.Parse("http://google.com")
+var mockURL, _ = url.Parse("http://localhost:8080.com")
 
 var ggetExpectError = GGet{URL: nil, Strategy: &strategy.ToStdOut{}, r: &mockRetriever{mockData: nil, mockErr: errors.New("an error")}}
 var ggetExpectData = GGet{URL: mockURL, Strategy: &strategy.ToStdOut{}, r: &mockRetriever{mockData: []byte{0, 1, 1, 1}}}
@@ -81,7 +81,6 @@ func checkTestStatus(status bool, t *testing.T) {
 	if status != PASS {
 		t.Fail()
 	}
-
 }
 
 func start(expectedResponse []byte) *http.Server {
