@@ -4,6 +4,8 @@ import "log"
 
 // ToStdOut provides a strategy for printing file contents to std out
 type ToStdOut struct {
+	// Size specifies the max length that you want to print,
+	// If not specified will display all the bytes as a String
 	Size int
 }
 
