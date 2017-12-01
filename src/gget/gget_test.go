@@ -3,7 +3,6 @@ package gget
 import (
 	"bytes"
 	"errors"
-	"fmt"
 	"log"
 	"net/http"
 	"net/url"
@@ -16,13 +15,6 @@ const (
 	PASS = true
 	FAIL = false
 )
-
-func pass(msg string) bool {
-	return PASS
-}
-func fail(msg string) bool {
-	return FAIL
-}
 
 type mockRetriever struct {
 	mockData []byte
@@ -45,17 +37,16 @@ func TestGGet(t *testing.T) {
 	testGGetExpectError := func() bool {
 		err := ggetExpectError.Execute()
 		if err == nil {
-			return fail("testGGetExpectError")
+			return FAIL
 		}
 
-		return pass("testGGetExpectError")
+		return PASS
 	}
 	testGGetExpectNoError := func() bool {
 		if err := ggetExpectData.Execute(); err != nil {
-			fmt.Println(err.Error())
-			return fail("testGGetExpectNoError")
+			return FAIL
 		}
-		return pass("testGGetExpectNoError")
+		return PASS
 	}
 
 	t1Status := testGGetExpectError()
